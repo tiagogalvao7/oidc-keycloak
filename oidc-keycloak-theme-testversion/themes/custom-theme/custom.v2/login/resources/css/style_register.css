@@ -1,0 +1,123 @@
+body {
+    background: url('../img/keycloak-background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+    flex-direction: column;
+}
+
+.container {
+    width: 550px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* Garante que o pseudoelemento não ultrapasse o container */
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background-color: #51a1fd; /* Cor da faixa azul */
+    z-index: 1;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 250px; /* Ajuste o tamanho conforme necessário */
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control:focus {
+    border-color: #51a1fd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 161, 253, 0.5);
+}
+
+.btn {
+    width: 80%;
+    padding: 10px;
+    background-color: #51a1fd;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn:hover {
+    background-color: #4857bd;
+}
+
+.btn:active {
+    background-color: #4080c0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: #ff0000; /* Cor vermelha para o texto da mensagem de erro */
+    margin-top: 15px; /* Espaçamento entre o logotipo e a mensagem de erro */
+    text-align: center; /* Centraliza o texto */
+    display: block; /* Garante que a mensagem ocupe toda a largura */
+    transition: opacity 1s ease-in-out; /* Transição suave para a opacidade */
+    opacity: 1; /* Opacidade inicial totalmente visível */
+}
+
+.error-message.hidden {
+    opacity: 0; /* Torna a mensagem invisível após 6 segundos */
+    display: none; /* Remove a mensagem do fluxo de layout após a transição */
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 80%;
+    }
+
+    .form-control, .btn {
+        width: 100%;
+    }
+}

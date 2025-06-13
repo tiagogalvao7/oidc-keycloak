@@ -1,0 +1,238 @@
+/** Estilos para x509.ftl (Refinando a centralização e layout dos botões) **/
+
+body {
+    background: url('../img/keycloak-bg.png') no-repeat center center fixed !important;
+    background-size: cover !important;
+    min-height: auto;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-page-container {
+    width: 100%;
+    max-width: 550px;
+    padding: 20px;
+}
+
+.login-pf-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.login-pf-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #3498db;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.card-pf {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+#kc-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#kc-header-wrapper .kc-logo-text span {
+    font-size: 2.4em;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+header.login-pf-header {
+    margin-bottom: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#kc-username {
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+}
+
+#kc-attempted-username {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #34495e;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#reset-login {
+    margin-left: 10px;
+    font-size: 1em;
+    color: #3498db;
+}
+
+#reset-login:hover {
+    text-decoration: underline;
+}
+
+.kc-login-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.kc-tooltip-text {
+    visibility: hidden;
+    width: 160px;
+    background-color: #34495e;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.kc-login-tooltip:hover .kc-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+#kc-content {
+    width: auto;
+    text-align: left;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 2.2em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.login-container div {
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-container label {
+    font-weight: bold;
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.login-container div>div {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    font-size: 1em;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#kc-form-options {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+#kc-form-buttons {
+    margin-top: 35px;
+    text-align: center;
+    width: 100%;
+}
+
+.button-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+}
+
+.button-container button.primary,
+.button-container button.default {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+    width: auto !important;
+    display: inline-flex !important;
+    margin: 0;
+}
+
+.button-container button.primary {
+    background-color: #5cb85c;
+    color: white;
+    box-shadow: 0 2px 4px rgba(92, 184, 92, 0.3);
+}
+
+.button-container button.primary:hover {
+    background-color: #4cae4c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 174, 76, 0.3);
+}
+
+.button-container button.default {
+    background-color: #fff;
+    color: #f0ad4e;
+    border: 1px solid #f0ad4e;
+    box-shadow: 0 2px 4px rgba(240, 173, 78, 0.3);
+}
+
+.button-container button.default:hover {
+    background-color: #f0ad4e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(238, 162, 54, 0.3);
+}
+
+.pf-c-button.btn-lg,
+.pf-c-button.pf-m-lg {
+    font-size: 1.3em;
+    padding: 16px 32px;
+}

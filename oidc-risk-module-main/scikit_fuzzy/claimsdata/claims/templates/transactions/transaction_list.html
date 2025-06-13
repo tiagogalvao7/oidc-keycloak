@@ -1,0 +1,21 @@
+<!-- templates/transactions/transaction_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction List</title>
+</head>
+<body>
+    <h1>Transaction List</h1>
+    <a href="{% url 'add_transaction' %}">Add New Transaction</a>
+    <ul>
+        {% for transaction in transactions %}
+            <li>{{ transaction.name }} - {{ transaction.transaction }}</li>
+        {% empty %}
+            <li>No transactions available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,2 @@
+org/keycloak/authentication/authenticators/conditional/ConditionalClientScopeAuthenticatorFactory.class
+org/keycloak/authentication/authenticators/conditional/ConditionalClientScopeAuthenticator.class

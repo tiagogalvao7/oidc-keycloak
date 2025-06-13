@@ -1,0 +1,266 @@
+body {
+    background: url('../img/keycloak-background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+    flex-direction: column;
+}
+
+.container {
+    width: 550px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 250px; /* Adjust the logo size as needed */
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+.info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire content horizontally */
+    margin-bottom: 10px;
+    text-align: center; /* Ensure text is centered */
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 35px solid #333334; /* Neutral color */
+    position: relative;
+    margin-right: 8px; /* Space between triangle and text */
+    flex-shrink: 0; /* Prevent triangle from resizing */
+}
+
+.exclamation {
+    position: absolute;
+    top: 5px; /* Adjust positioning as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px; /* Increase exclamation point size */
+    color: white; /* Keep the exclamation mark white */
+    font-weight: bold;
+}
+
+.info-text-container {
+    text-align: center; /* Center the text within the container */
+    position: relative;
+}
+
+.info-text {
+    font-size: 18px; /* Increase main text size */
+    color: #333; /* Keep the text black */
+    font-weight: bold;
+}
+
+.info-button-gdpr {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px; /* Reducing font size to make the button smaller */
+    width: 20px; /* Reducing button width */
+    height: 20px; /* Reducing button height */
+    text-align: center;
+    line-height: 20px; /* Adjusting vertical alignment */
+    cursor: pointer;
+    margin-left: 15px; /* Moving further to the right */
+    position: relative;
+    display: inline-block;
+}
+
+.info-button-gdpr:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+.info-popup {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: -10px; /* Position above the "i" button */
+    left: 105%; /* Shift popup to the right */
+    width: 250px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    z-index: 10;
+}
+
+.info-popup:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+
+.info-note {
+    display: block;
+    font-size: 14px; /* Increase additional note text size */
+    color: #000000; /* Keep the note text black */
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center; /* Ensure additional note is centered */
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 24px;
+    color: #51a1fd;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-control {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.form-control:focus {
+    border-color: #51a1fd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 161, 253, 0.5);
+}
+
+.btn {
+    width: 80%;
+    padding: 10px;
+    background-color: #51a1fd;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn:hover {
+    background-color: #4857bd;
+}
+
+.btn:active {
+    background-color: #4080c0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    text-align: center;
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.5s ease-out, height 0.5s ease-out;
+}
+
+.error-message.hidden {
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background-color: #51a1fd;
+    z-index: 1;
+}
+
+.form-group.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group.remember-forgot .checkbox,
+.form-group.remember-forgot .form-options-wrapper {
+    display: inline-block;
+}
+
+.form-group.remember-forgot .checkbox label,
+.form-group.remember-forgot .form-options-wrapper span {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 80%;
+    }
+
+    .form-control, .btn {
+        width: 100%;
+    }
+}
+
+/* New classes for compliance levels */
+.triangle.low {
+    border-bottom-color: red; /* Red color for low compliance */
+}
+
+.triangle.medium {
+    border-bottom-color: orange; /* Orange color for medium compliance */
+}
+
+.triangle.high {
+    border-bottom-color: green; /* Green color for high compliance */
+}
+

@@ -1,0 +1,123 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+    driver: local
+  db_data:
+    driver: local
+  grafana_data: # Volume para persistência dos dados do Grafana
+    driver: local
+
+services:
+  # Database for the risk module
+  db:
+    image: postgres
+    container_name: risk_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=oidc-pr24
+    ports:
+      - 5432:5432
+    networks:
+      - claims-data-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API for the risk module
+  evm-api:
+    build:
+      context: ./scikit_fuzzy/claimsdata
+    command: >
+      bash -c "
+      cd /evm-api &&
+      until pg_isready -h db -U postgres; do
+        echo 'Waiting for database...';
+        sleep 3;
+      done;
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py populate_claims &&
+      python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - ./scikit_fuzzy/claimsdata:/evm-api
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=oidc-pr24
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - claims-data-network
+
+  # Database for Keycloak
+  keycloak_postgres:
+    image: postgres:latest
+    container_name: keycloak_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=password
+    networks:
+      - claims-data-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Keycloak service
+  keycloak:
+    build:
+      context: ../oidc-keycloak-theme-testversion # Confirme que o Dockerfile está neste caminho
+    container_name: keycloak_custom
+    ports:
+      - 8080:8080
+      - 9000:9000 # Porta de gestão do Keycloak para métricas
+    environment: # Variáveis de ambiente para o Keycloak
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak_postgres # Nome do serviço da base de dados do Keycloak
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+      KC_HOSTNAME_STRICT: false
+      KC_LOG_LEVEL: INFO
+      KC_METRICS_ENABLED: "true" # Ativar métricas do Keycloak
+      KC_CACHE_METRICS_HISTOGRAMS_ENABLED: "true" # Ativar histogramas de cache
+      KC_HTTP_MANAGEMENT_PORT: 9000 # Porta onde as métricas são expostas
+      KC_HTTP_MANAGEMENT_RELATIVE_PATH: /management # Caminho das métricas
+    depends_on:
+      keycloak_postgres:
+        condition: service_healthy
+    networks:
+      - claims-data-network
+    restart: always
+
+  # Risk module
+  risk:
+    build:
+      context: .
+    command: python /risk/risk.py # Correct path for risk.py inside the container
+    volumes:
+      - .:/risk # Mapping the entire directory to the container
+    ports:
+      - "5001:5001"
+    environment:
+      - URL-EVM-API=http://host.docker.internal:8000
+    networks:
+      - claims-data-network
+
+
+networks:
+  claims-data-network:

@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ../data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=oidc-pr24  # Avoid hardcoding credentials. Use secrets or environment variables instead.
+    ports:
+      - 5432:5432
+    networks:
+      - claims-data-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  evm-api:
+    build: .
+    command: >
+      bash -c "
+      until pg_isready -h db -U postgres; do
+        echo 'Waiting for database...';
+        sleep 3;
+      done;
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py populate_claims &&
+      python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - .:/evm-api
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=oidc-pr24  # Use a secure secret management solution for sensitive information.
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - claims-data-network
+
+networks:
+  claims-data-network:

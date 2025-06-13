@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Education Claim</title>
+</head>
+<body>
+    <h1>Add Education Claim</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Claim</button>
+    </form>
+    <a href="{% url 'education_claim_list' %}">Back to Education Claims List</a>
+</body>
+</html>

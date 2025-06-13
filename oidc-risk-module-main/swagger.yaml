@@ -1,0 +1,164 @@
+---
+swagger: '2.0'
+basePath: "/"
+paths:
+  "/compliance/{table}":
+    parameters:
+    - type: string
+      default: ''
+      in: query
+      description: Comma-separated list of claims to include in the compliance assessment
+      name: claims
+    - in: path
+      description: The type of claims table (e.g., education, osp)
+      name: table
+      required: true
+      type: string
+    get:
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/Compliance"
+      operationId: get_compliance_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        type: string
+        format: mask
+        description: An optional fields mask
+      tags:
+      - compliance
+  "/risk/{table}":
+    parameters:
+    - type: string
+      default: ''
+      in: query
+      description: Comma-separated list of claims to include in the risk assessment
+      name: claims
+    - in: path
+      description: The type of claims table (e.g., education, osp)
+      name: table
+      required: true
+      type: string
+    get:
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/Risk"
+      operationId: get_risk_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        type: string
+        format: mask
+        description: An optional fields mask
+      tags:
+      - risk
+  "/transaction/add":
+    post:
+      responses:
+        '200':
+          description: Success
+      operationId: post_add_transaction_resource
+      parameters:
+      - name: payload
+        required: true
+        in: body
+        schema:
+          "$ref": "#/definitions/Transaction"
+      tags:
+      - transaction
+  "/transaction/{name}":
+    parameters:
+    - in: path
+      description: The name of the transaction
+      name: name
+      required: true
+      type: string
+    get:
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/Transaction"
+      operationId: get_transaction_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        type: string
+        format: mask
+        description: An optional fields mask
+      tags:
+      - transaction
+info:
+  title: Risk and Compliance API
+  version: '1.0'
+  description: A simple API for calculating risks and GDPR compliance
+produces:
+- application/json
+consumes:
+- application/json
+tags:
+- name: risk
+  description: Risk operations
+- name: compliance
+  description: Compliance operations
+- name: transaction
+  description: Transaction operations
+definitions:
+  Risk:
+    required:
+    - highest_risk_level
+    - highest_risk_value
+    properties:
+      highest_risk_value:
+        type: number
+        description: The highest risk value
+      highest_risk_level:
+        type: string
+        description: The highest risk level
+      calculated_risks:
+        type: array
+        description: List of calculated risks without risk values
+        items:
+          "$ref": "#/definitions/RiskClaim"
+    type: object
+  RiskClaim:
+    required:
+    - designation
+    - risk_level
+    properties:
+      designation:
+        type: string
+        description: Claim Designation
+      risk_level:
+        type: string
+        description: Risk Level
+    type: object
+  Compliance:
+    required:
+    - compliance_percentage
+    properties:
+      compliance_percentage:
+        type: number
+        description: Compliance Percentage
+    type: object
+  Transaction:
+    required:
+    - name
+    - transaction
+    properties:
+      name:
+        type: string
+        description: Transaction Name
+      transaction:
+        type: string
+        description: Transaction Hash
+    type: object
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask

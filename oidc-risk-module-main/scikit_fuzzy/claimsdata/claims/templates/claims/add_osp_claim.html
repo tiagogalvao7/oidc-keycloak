@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add OSP Claim</title>
+</head>
+<body>
+    <h1>Add OSP Claim</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Claim</button>
+    </form>
+    <a href="{% url 'osp_claim_list' %}">Back to OSP Claims List</a>
+</body>
+</html>

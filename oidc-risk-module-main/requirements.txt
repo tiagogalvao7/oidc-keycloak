@@ -1,0 +1,9 @@
+Flask
+flask_restx
+flask_cors
+requests
+numpy
+scikit-fuzzy
+matplotlib
+scipy
+networkx

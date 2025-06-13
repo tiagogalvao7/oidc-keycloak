@@ -1,0 +1,204 @@
+body {
+    background: url('../img/keycloak-background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    font-size: 20px; /* Increase base font size */
+}
+
+.logo img {
+    width: 400px; /* Increase logo size */
+    margin-bottom: 25px; /* Increase space below logo */
+}
+
+.risk-container {
+    width: 500px; /* Increase risk container width */
+    padding: 20px; /* Increase internal padding */
+    background-color: rgba(243, 237, 237, 0.9);
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px; /* Increase space below container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.risk-container h2 {
+    font-size: 24px; /* Increase font size */
+    margin: 0;
+    color: #000;
+    position: relative;
+}
+
+.risk-level {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.info-button-risk {
+    background-color: #51a1fd;
+    border: none;
+    color: white;
+    padding: 6px 10px; /* Increase padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Increase font size */
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.info-button-consent {
+    background-color: #51a1fd;
+    border: none;
+    color: white;
+    padding: 6px 10px; /* Increase padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Increase font size */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.container {
+    width: 500px; /* Increase container width */
+    padding: 25px; /* Increase internal padding */
+    background-color: rgba(243, 237, 237, 0.9);
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px; /* Increase space below container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.container h1 {
+    font-size: 24px; /* Increase font size */
+    margin: 20px 0; /* Increase vertical space */
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increase space between form groups */
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    font-size: 18px; /* Increase font size */
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.claim-color {
+    width: 18px; /* Increase color circle size */
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 12px; /* Increase space next to color circle */
+}
+
+.warning-message {
+    color: #0013f6; /* DarkBlue color for warning text */
+    font-size: 18px; /* Font size for warning text */
+    margin: 20px 0; /* Margin for spacing */
+    text-align: center; /* Center the text */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center the button group */
+    gap: 20px; /* Add space between buttons */
+    width: 100%; /* Ensure buttons take full width */
+}
+
+.btn {
+    flex: 1; /* Allow buttons to take equal space */
+    max-width: 200px; /* Limit maximum width of buttons */
+    padding: 15px 0; /* Increase vertical padding */
+    border: none;
+    border-radius: 5px;
+    font-size: 18px; /* Increase font size */
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* Info popup styles */
+.info-popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 10px);
+    background-color: white;
+    padding: 20px; /* Increase internal padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    z-index: 1000;
+    width: 220px; /* Increase popup width */
+}
+
+.info-popup h3 {
+    font-size: 16px; /* Increase popup title font size */
+    margin-bottom: 12px; /* Increase space below title */
+}
+
+#infoPopupRisk ul {
+    list-style-type: disc; /* Bullet points for the first popup */
+    padding-left: 25px; /* Increase indentation space */
+    font-size: 14px; /* Increase font size */
+}
+
+#infoPopupColors ul {
+    list-style-type: none; /* No bullet points for the second popup */
+    padding: 0;
+    font-size: 14px; /* Increase font size */
+}
+
+.info-popup ul li {
+    color: #555;
+    margin-bottom: 8px; /* Increase space between list items */
+}
+
+/* Adding colors for risk levels in the popup */
+#infoPopupColors ul li .claim-color {
+    margin-right: 10px;
+}
+
+.info-popup ul li span.claim-color.dark-red {
+    background-color: #b22222; /* Critical risk */
+}
+
+.info-popup ul li span.claim-color.orange {
+    background-color: #ff8c00; /* High risk */
+}
+
+.info-popup ul li span.claim-color.yellow {
+    background-color: #f1c40f; /* Medium risk */
+}
+
+.info-popup ul li span.claim-color.dark-green {
+    background-color: #006400; /* Low risk */
+}
+
+.info-popup ul li span.claim-color.green {
+    background-color: #27ae60; /* None risk */
+}
+

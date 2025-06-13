@@ -1,0 +1,7 @@
+{
+    {
+      "name": "custom.v2",
+      "types": [ "login","account" ]
+    }
+  ]
+}

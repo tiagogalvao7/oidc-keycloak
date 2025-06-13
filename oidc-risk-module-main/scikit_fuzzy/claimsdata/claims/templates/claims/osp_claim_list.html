@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OSP Claims List</title>
+</head>
+<body>
+    <h1>OSP Claims List</h1>
+    <h4>Claim - Impact Level - GDPR Compliance</h4>
+    <ul>
+        {% for claim in claims %}
+            <li>{{ claim.claim_designation }} - {{ claim.impact }} - {{ claim.gdpr_compliance }}</li>
+        {% empty %}
+            <li>No claims available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_osp_claim' %}">Add New OSP Claim</a>
+    <a href="{% url 'education_claim_list' %}">Go to Education Claims List</a>
+</body>
+</html>

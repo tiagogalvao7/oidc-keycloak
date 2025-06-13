@@ -1,0 +1,177 @@
+body {
+    background: url('../img/keycloak-background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+    flex-direction: column;
+}
+
+.container {
+    width: 550px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alinhar ao topo para formulário mais curto */
+    height: auto;
+    /* Ajustar altura automaticamente */
+}
+
+.logo {
+    margin-bottom: 30px;
+    /* Aumentar margem inferior do logo */
+}
+
+.logo img {
+    width: 250px;
+    /* Ajustar o tamanho do logo conforme necessário */
+}
+
+h1 {
+    margin: 25px 0;
+    /* Ajustar margem do título */
+    font-size: 24px;
+    color: #51a1fd;
+    /* Cor azul principal */
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    /* Aumentar margem inferior do grupo de formulário */
+    position: relative;
+    width: 80%;
+    /* Limitar largura do input e botão */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    /* Tamanho da fonte do input */
+}
+
+.form-control:focus {
+    border-color: #51a1fd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 161, 253, 0.5);
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #51a1fd;
+    /* Cor azul principal do botão */
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #4857bd;
+}
+
+.btn:active {
+    background-color: #4080c0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    text-align: center;
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.5s ease-out, height 0.5s ease-out;
+}
+
+.error-message.hidden {
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background-color: #51a1fd;
+    /* Cor azul principal da fita */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 1;
+}
+
+.form-options-wrapper {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form-options-wrapper a {
+    color: #51a1fd;
+    text-decoration: none;
+}
+
+.form-options-wrapper a:hover {
+    text-decoration: underline;
+}
+
+#kc-registration-container {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+#kc-registration a {
+    color: #51a1fd;
+    text-decoration: none;
+}
+
+#kc-registration a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes específicos para a página de username */
+h1 {
+    text-align: center;
+    /* Centrar o título "Login" */
+}
+
+.btn-primary {
+    background-color: #51a1fd;
+    /* Garante que o botão usa a cor principal */
+}
+
+.btn-primary:hover {
+    background-color: #4857bd;
+}
+
+.btn-primary:active {
+    background-color: #4080c0;
+}
