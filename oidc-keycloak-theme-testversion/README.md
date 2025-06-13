@@ -1,12 +1,16 @@
 # oidc-keycloack-theme-testsversion
 
-OIDC theme for Keycloak Login
+OIDC-PRINCE theme for Keycloak Login
 
 In this project the claims are generated and sent randomly by the [login.ftl](https://github.com/NGI-TRUSTCHAIN/OIDC-PRINCE/tree/main/oidc-keycloak-theme-testversion/themes/custom-theme/custom.v2/login/login.ftl) and [login-oauth-grant.ftl](https://github.com/NGI-TRUSTCHAIN/OIDC-PRINCE/tree/main/oidc-keycloak-theme-testversion/themes/custom-theme/custom.v2/login/login-oauth-grant.ftl) files so that you can see a greater diversity of results on the screens where the API calculation values are received (Login screen with GDPR Compliance, and the Grant Access screen with the risk associated with each claim), together with the [Flask-Client-Application](https://github.com/NGI-TRUSTCHAIN/OIDC-PRINCE/tree/main/Flask-Client-Application), you can test the entire implementation.
 
 ## Steps do test and use OIDC Login Keycloak theme
 
 All the Keycloak settings are have been configured beforehand, and all you have to do is run docker to enter the Keycloak interface and see the whole process.
+
+## Some Keycloak Configurations
+
+
 
 
 **Explanation of how the screens interact**: three screens were developed for our theme: Login screen, Create user screen and Grant Access screen.
